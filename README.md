@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>নকশাপাতা | Luxury Handcrafts</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@300;500;700&family=Galada&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    
+    <style>
+        :root {
+            --deep-green: #021a15;
+            --royal-gold: linear-gradient(135deg, #bd9319 0%, #f1d27b 50%, #8d6e11 100%);
+            --soft-gold: #d4af37;
+            --cream: #fcfaf5;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Anek Bangla', sans-serif;
+            background-color: var(--cream);
+            color: #222;
+            overflow-x: hidden;
+        }
+
+        /* --- Luxury Navigation --- */
+        nav {
+            background: rgba(2, 26, 21, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0; width: 100%;
+            z-index: 1000;
+            border-bottom: 2px solid var(--soft-gold);
+        }
+
+        .logo {
+            font-family: 'Galada', cursive;
+            font-size: 2.2rem;
+            background: var(--royal-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+
+        /* --- Hero Section with Animated Pattern --- */
+        .hero {
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(2, 26, 21, 0.8), rgba(2, 26, 21, 0.8)), 
+                        url('https://www.toptal.com/designers/subtlepatterns/patterns/luxury.png');
+            color: white;
+            position: relative;
+        }
+
+        .hero h1 { 
+            font-family: 'Galada', cursive; 
+            font-size: 5rem; 
+            margin-bottom: 20px;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        .hero p { font-size: 1.5rem; font-weight: 300; letter-spacing: 5px; color: var(--soft-gold); }
+
+        /* --- Stats Counter Section --- */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 40px;
+        }
+        .stat-item h2 { font-family: 'Playfair Display'; font-size: 2.5rem; color: #fff; }
+        .stat-item p { font-size: 0.9rem; letter-spacing: 1px; }
+
+        /* --- Category Filter --- */
+        .filter-container {
+            text-align: center;
+            margin: 50px 0;
+        }
+        .filter-btn {
+            background: transparent;
+            border: 1px solid var(--soft-gold);
+            padding: 10px 25px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 50px;
+            color: var(--deep-green);
+            font-weight: 700;
+            transition: 0.3s;
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--royal-gold);
+            color: var(--deep-green);
+        }
+
+        /* --- Product Cards Upgrade --- */
+        .container { max-width: 1400px; margin: 0 auto 100px; padding: 0 20px; }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 15px;
+            position: relative;
+            transition: 0.5s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid transparent;
+        }
+
+        .card:hover {
+            transform: translateY(-15px);
+            border: 1px solid var(--soft-gold);
+            box-shadow: 0 20px 40px rgba(189, 147, 25, 0.2);
+        }
+
+        .img-box {
+            width: 100%; height: 400px;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .img-box img { width: 100%; height: 100%; object-fit: cover; transition: 1s; }
+        
+        .card:hover .img-box img { transform: scale(1.1); }
+
+        .price-badge {
+            position: absolute;
+            bottom: 20px; right: 20px;
+            background: var(--deep-green);
+            color: var(--soft-gold);
+            padding: 8px 20px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            z-index: 5;
+        }
+
+        .info { padding: 25px 10px; text-align: left; }
+        .info h3 { font-size: 1.4rem; color: var(--deep-green); margin-bottom: 10px; }
+
+        .order-btn {
+            background: var(--royal-gold);
+            border: none; padding: 15px;
+            border-radius: 12px; font-weight: 700; width: 100%;
+            cursor: pointer; transition: 0.3s;
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+
+        /* --- Floating Dock (Glass Style) --- */
+        .dock {
+            position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%);
+            background: rgba(2, 26, 21, 0.9);
+            backdrop-filter: blur(20px);
+            padding: 15px 40px; border-radius: 100px;
+            display: flex; gap: 40px;
+            border: 1px solid var(--soft-gold);
+            z-index: 2000;
+        }
+
+        .dock-link { text-decoration: none; color: var(--soft-gold); text-align: center; font-size: 0.8rem; }
+        .dock-link i { font-size: 1.5rem; display: block; margin-bottom: 5px; }
+
+        footer {
+            background: var(--deep-green);
+            color: white; padding: 100px 20px; text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 3rem; }
+            .dock { width: 95%; gap: 15px; padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="#" class="logo">নকশাপাতা</a>
+    <div style="color: var(--soft-gold); font-weight: 700;">Hotline: 01707481066</div>
+</nav>
+
+<section class="hero">
+    <h1 class="animate__animated animate__fadeInDown">আভিজাত্যের বুনন</h1>
+    <p class="animate__animated animate__fadeInUp">Pure Handmade Excellence by Asha Apu</p>
+    
+    <div class="stats animate__animated animate__fadeInUp animate__delay-1s">
+        <div class="stat-item"><h2>৫০+</h2><p>ডিজাইন</p></div>
+        <div class="stat-item"><h2>৫০০+</h2><p>হ্যাপি কাস্টমার</p></div>
+        <div class="stat-item"><h2>১০০%</h2><p>অর্গানিক</p></div>
+    </div>
+</section>
+
+<div class="filter-container">
+    <button class="filter-btn active">সবগুলো</button>
+    <button class="filter-btn">নকশী কাঁথা</button>
+    <button class="filter-btn">শাড়ি</button>
+    <button class="filter-btn">কুশন কভার</button>
+</div>
+
+<div class="container">
+    <div class="grid" id="mainGrid">
+        </div>
+</div>
+
+<div class="dock">
+    <a href="tel:01707481066" class="dock-link">📞<br>Call</a>
+    <a href="https://wa.me/8801707481066" class="dock-link">💬<br>WhatsApp</a>
+    <a href="#" class="dock-link">🛍️<br>Shop</a>
+    <a href="#" class="dock-link">👤<br>Profile</a>
+</div>
+
+<footer>
+    <h2 style="font-family: 'Galada'; font-size: 2.5rem; color: var(--soft-gold);">নকশাপাতা</h2>
+    <p style="margin: 20px 0; opacity: 0.7;">ঐতিহ্যবাহী সূচিকর্ম ও হাতের কাজের নির্ভরযোগ্য প্রতিষ্ঠান</p>
+    <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 30px auto; width: 50%;">
+    <p>© ২০২৬ ঐতিহ্যের ছোঁয়া নকশাপাতা | আশা অপু</p>
+</footer>
+
+<script>
+    const images = [
+        "1UUltwyF6HejQDQcx2PF95PtV7Oooi53K", "1QTZ5W-u3jOG2mED6NgiGmHrPT2l-k2aG",
+        "1jsgergFha5wDSu92VbL0xQA9Kf4RrSxP", "1zKqZx-3-3Vvf2xUNq360OTriGWsyVfb3",
+        "1_Ln_sBI3Fh1ptVGq7BzTQtHVT0_K8xjN", "1wJEYp8yx9Pk0yIte4z8rpboQ9AiFJwW-",
+        "1x5hvV0nulT8OaZh4fPYThWMDZHtkwQij", "1YOHui5OXgt7C-M7Qrgfo8LDdJ2kIUV7y",
+        "1TvK9rsYxeESvV7jQ_QbQIdJ2kIUV7y", "1XClhhC1Y4KqV7bRyTBZV5mVBM8AoQTlp",
+        "16jBOJJRYBqnyHzcH51-Nb8LtVax_MPDy", "1NITsmIFtj-UPJpbGYh5g0efRAtItfv0Q",
+        "1G8ay4iZ9kGdTYWv16-KwIgO3Bkrlf3Hi", "1tslYa_sC1EpzexuL1IMAme3TAyI7hJeF"
+    ];
+
+    const grid = document.getElementById('mainGrid');
+
+    images.forEach((id, index) => {
+        const card = document.createElement('div');
+        card.className = 'card animate__animated animate__fadeInUp';
+        card.style.animationDelay = `${index * 0.1}s`;
+        
+        card.innerHTML = `
+            <div class="img-box">
+                <img src="https://lh3.googleusercontent.com/d/${id}" alt="Product">
+                <div class="price-badge">৳ ${1000 + (index * 200)}</div>
+            </div>
+            <div class="info">
+                <h3>প্রিমিয়াম নকশী ডিজাইন #${index + 1}</h3>
+                <p style="font-size: 0.85rem; color: #666; margin-bottom: 15px;">১০০% সুতি কাপড়ে দক্ষ কারিগর দ্বারা হাতের কাজ করা।</p>
+                <button class="order-btn" onclick="order(${index + 1})">অর্ডার কনফার্ম করুন</button>
+            </div>
+        `;
+        grid.appendChild(card);
+    });
+
+    function order(id) {
+        let msg = `আসসালামু আলাইকুম, আমি নকশাপাতা থেকে আপনার '${id}' নম্বর ডিজাইনটি অর্ডার করতে চাই।`;
+        window.open(`https://wa.me/8801707481066?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+</script>
+
+</body>
+</html>
